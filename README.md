@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CampusOS ERP
 
-## Getting Started
+CampusOS ERP is a local-first college ERP demo built with Next.js, TypeScript, and Tailwind CSS. It gives administrators, faculty, and students a role-aware dashboard for day-to-day campus operations without requiring an external database or third-party services.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![React](https://img.shields.io/badge/React-19-149eca)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8)
+![Demo Data](https://img.shields.io/badge/Data-local_fixtures-green)
+
+## Highlights
+
+- Role-based dashboards for administrators, faculty, and students.
+- Local demo authentication with cookie-backed sessions.
+- Student records, attendance, marks, timetable, notices, fee status, and audit views.
+- ReClaim lost-and-found workflow for reporting and reviewing found items.
+- Server Actions and API routes for demo interactions.
+- Jest and Playwright coverage for unit and end-to-end testing.
+- Security-oriented docs for setup, threat modeling, privacy, and deployment readiness.
+
+## Tech Stack
+
+| Area | Technology |
+| --- | --- |
+| Framework | Next.js 16 App Router |
+| UI | React 19, Tailwind CSS 4, Radix UI, Lucide React, Framer Motion |
+| Language | TypeScript |
+| Validation | Zod, React Hook Form |
+| Charts | Recharts |
+| Testing | Jest, Testing Library, Playwright |
+| Data | Local TypeScript fixtures in `src/lib/demo-data.ts` |
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 20 or newer
+- npm 10 or newer
+
+### Install and Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo Accounts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All demo accounts use the password `password123`.
 
-## Learn More
+| Role | Email |
+| --- | --- |
+| Administrator | `admin@campusos.local` |
+| Faculty | `faculty@campusos.local` |
+| Student | `student@campusos.local` |
 
-To learn more about Next.js, take a look at the following resources:
+## Available Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev           # Start the local development server
+npm run build         # Create a production build
+npm run start         # Run the production build
+npm run lint          # Run ESLint
+npm test              # Run Jest tests
+npm run test:coverage # Run Jest with coverage
+npm run test:e2e      # Run Playwright tests
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```text
+src/
+|-- app/                 # Next.js App Router pages, layouts, and API routes
+|   |-- (auth)/          # Login and password flows
+|   |-- api/             # Local API endpoints
+|   `-- dashboard/       # Protected ERP modules
+|-- actions/             # Server Actions
+|-- components/          # UI, layout, dashboard, auth, and ReClaim components
+|-- lib/                 # Auth, RBAC, demo data, security, and utility modules
+`-- types/               # Shared TypeScript types
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+docs/                   # Setup, API, deployment, security, privacy, and user docs
+tests/                  # Jest and Playwright tests
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Documentation
+
+- [Setup guide](docs/SETUP.md)
+- [User manual](docs/USER-MANUAL.md)
+- [API notes](docs/API.md)
+- [Database notes](docs/DATABASE.md)
+- [Deployment notes](docs/DEPLOYMENT.md)
+- [Security checklist](docs/SECURITY-CHECKLIST.md)
+- [Threat model](docs/THREAT-MODEL.md)
+- [Privacy policy](docs/PRIVACY-POLICY.md)
+
+## Data and Persistence
+
+CampusOS currently uses local fixture data for demonstration. Demo actions are acknowledged by the UI/server flow, but they are not persisted to a database. For production use, replace the local demo data and session modules with a real persistence layer, production authentication, and managed secrets.
+
+## Deployment Notes
+
+The project includes a Vercel configuration and can be built with:
+
+```bash
+npm run build
+```
+
+Before using CampusOS in production, review the security documentation, configure real environment variables, add persistent storage, and replace the local demo authentication flow.
+
+## License
+
+This repository does not currently declare a license.
